@@ -13,6 +13,11 @@ class DataProcessor:
     Process extracted PDF data and prepare it for spreadsheet writing
     """
     
+    # Configuration constants
+    CHAPTER_CONTINUATION_WORD_THRESHOLD = 2
+    MIN_SUBTOPIC_LENGTH = 5
+    MAX_SUBTOPIC_LENGTH = 100
+    
     def __init__(self, cache_dir: str = "cache"):
         """
         Initialize data processor
@@ -130,7 +135,7 @@ class DataProcessor:
         current_words = set(current_title.split())
         previous_words = set(previous_title.split())
         
-        if len(current_words & previous_words) >= 2:
+        if len(current_words & previous_words) >= self.CHAPTER_CONTINUATION_WORD_THRESHOLD:
             return True
         
         return False
@@ -171,7 +176,7 @@ class DataProcessor:
         if content and len(content) > 0:
             # First non-empty line after title might be subtopic
             for line in content[:5]:
-                if line and len(line) > 5 and len(line) < 100:
+                if line and len(line) > self.MIN_SUBTOPIC_LENGTH and len(line) < self.MAX_SUBTOPIC_LENGTH:
                     return line
         
         return ""

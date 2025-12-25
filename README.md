@@ -4,7 +4,7 @@ This project automates the creation of unit management tables based on education
 
 ## Features
 
-1. **PDF Analysis**: Process split PDF files to extract text, images, and structured data using PyPDF2 and PyMuPDF
+1. **PDF Analysis**: Process split PDF files to extract text, images, and structured data using PyMuPDF (fitz)
 2. **Document Caching**: Cache extracted data locally for efficient processing of multi-part documents
 3. **Spreadsheet Integration**: Automatically create and populate Google Sheets with standardized headers
 4. **Contextual Processing**: Reference previous PDF sections when processing multi-part documents

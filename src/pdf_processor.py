@@ -31,7 +31,7 @@ class PDFProcessor:
     def _get_cache_key(self, pdf_path: str) -> str:
         """Generate a unique cache key for a PDF file"""
         with open(pdf_path, 'rb') as f:
-            file_hash = hashlib.md5(f.read()).hexdigest()
+            file_hash = hashlib.sha256(f.read()).hexdigest()
         return f"{os.path.basename(pdf_path)}_{file_hash}"
     
     def _get_cache_path(self, cache_key: str) -> str:
